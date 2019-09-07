@@ -6,5 +6,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'accordion';
+  data = [
+    {
+      title: 'Akita',
+      description: 'State mean',
+      link: ''
+    },
+    {
+      title: 'Spectator',
+      description: 'State mean',
+      link: ''
+    },
+    {
+      title: 'Transloco',
+      description: 'State mean',
+      link: ''
+    }
+  ];
 }

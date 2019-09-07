@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+app-accordion-header {
+  cursor: pointer;
+  &.accordion-open {
+    color: hotpink;
+  }
+}
+
+app-accordion {
+  display: block;
+}
