@@ -7,6 +7,12 @@ import { AccordionGroupComponent } from './accordion-group/accordion-group.compo
 import { AccordionHeaderComponent } from './accordion-header/accordion-header.component';
 import { AccordionContentComponent } from './accordion-content/accordion-content.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IconComponent } from './icon/icon.component';
+import { AccordionContentLazyDirective } from './accordion-content-lazy.directive';
+import { HttpClientModule } from '@angular/common/http';
+import { environment } from '../environments/environment';
+import { translocoLoader } from './transloco.loader';
+import { TranslocoModule, TRANSLOCO_CONFIG, TranslocoConfig } from '@ngneat/transloco';
 
 @NgModule({
   declarations: [
@@ -14,10 +20,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AccordionComponent,
     AccordionGroupComponent,
     AccordionHeaderComponent,
-    AccordionContentComponent
+    AccordionContentComponent,
+    IconComponent,
+    AccordionContentLazyDirective
   ],
-  imports: [BrowserModule, BrowserAnimationsModule],
-  providers: [],
+  imports: [BrowserModule, BrowserAnimationsModule, HttpClientModule, TranslocoModule],
+  providers: [{
+      provide: TRANSLOCO_CONFIG,
+      useValue: {
+        listenToLangChange: false,
+        defaultLang: 'en',
+        fallbackLang: 'es',
+        prodMode: environment.production,
+        scopeStrategy: 'shared'
+      } as TranslocoConfig
+    },
+    translocoLoader
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

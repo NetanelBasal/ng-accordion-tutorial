@@ -1,10 +1,12 @@
-import { Component, OnInit, Input, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, ChangeDetectionStrategy, ContentChild } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
+import { AccordionContentLazyDirective } from '../accordion-content-lazy.directive';
 
 @Component({
-  selector: 'app-accordion-content',
+  selector: 'accordion-content',
   template: `
     <div *ngIf="isOpen" [@slideInOut]>
+      <ng-template [ngTemplateOutlet]="lazyContent && lazyContent.content"></ng-template>
       <ng-content></ng-content>
     </div>
   `,
@@ -25,13 +27,14 @@ import { trigger, style, animate, transition } from '@angular/animations';
   ]
 })
 export class AccordionContentComponent {
+  @ContentChild(AccordionContentLazyDirective, { static: true }) lazyContent: AccordionContentLazyDirective;
   _isOpen = false;
 
   @Input()
   set isOpen(value: boolean) {
     if (this._isOpen !== value) {
       this._isOpen = value;
-      this.cdr.detectChanges();
+      this.cdr.markForCheck();
     }
   }
 

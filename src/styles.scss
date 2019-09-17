@@ -1,10 +1,22 @@
-app-accordion-header {
+accordion-header {
   cursor: pointer;
   &.accordion-open {
-    color: hotpink;
+    color: lightseagreen;
   }
 }
 
-app-accordion {
+accordion {
   display: block;
+}
+
+.card {
+  border-radius: none;
+}
+
+.card-header {
+  background-color: rgba(160, 155, 155, 0.03);
+}
+
+body {
+  margin-top: 20px;
 }

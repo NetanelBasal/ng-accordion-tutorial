@@ -1,22 +1,16 @@
 <div class="container">
-  <app-accordion class="accordion">
-    <app-accordion-group *ngFor="let section of data" class="card">
-      <app-accordion-header class="card-header"> {{ section.title }} </app-accordion-header>
-      <app-accordion-content>
-        <div class="card-body">{{ section.description }}</div>
-        <!-- <app-accordion
-          class="accordion"
-          style="margin-left: 20px;
-        display: block;"
-        >
-          <app-accordion-group *ngFor="let section of data" class="card">
-            <app-accordion-header class="card-header"> {{ section.title }} </app-accordion-header>
-            <app-accordion-content>
-              <div class="card-body">{{ section.description }}</div>
-            </app-accordion-content>
-          </app-accordion-group>
-        </app-accordion> -->
-      </app-accordion-content>
-    </app-accordion-group>
-  </app-accordion>
+  <accordion class="accordion">
+    <accordion-group *ngFor="let section of data" class="card">
+      <accordion-header class="card-header" #header="accordionHeader">
+        {{ section.title }}
+      </accordion-header>
+      <accordion-content>
+        <ng-template accordionContentLazy>
+          <div class="card-body">
+            {{ section.description }}
+          </div>
+        </ng-template>
+      </accordion-content>
+    </accordion-group>
+  </accordion>
 </div>
